@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-function AddInput({ addItem }) {
+function AddInput({ addItem, deleteItem }) {
   let [itemName, setItemName] = useState("");
   let handleChange = (e) => {
     setItemName(e.target.value);
@@ -11,7 +12,7 @@ function AddInput({ addItem }) {
       setItemName("");
       return;
     }
-    addItem(itemName);
+    addItem({ id: uuidv4(), name: itemName, active: false });
     setItemName("");
   };
   return (

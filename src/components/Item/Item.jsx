@@ -1,10 +1,27 @@
 import React from "react";
-
-function Item({ item }) {
+import { act } from "react-dom/test-utils";
+import { BsFillTrashFill } from "react-icons/bs";
+function Item({ item, deleteItem, updateItem }) {
+  let { name, active } = item;
+  let handleChange = (e) => {
+    let active = e.target.checked;
+    updateItem({ ...item, active });
+  };
   return (
     <li>
-      <input type="checkbox" name="checkbox" id="" />
-      <div>{item.name}</div>
+      <input
+        onChange={handleChange}
+        type="checkbox"
+        name="checkbox"
+        id=""
+        checked={active}
+      />
+      <div>{name}</div>
+      <BsFillTrashFill
+        onClick={() => {
+          deleteItem(item.id);
+        }}
+      ></BsFillTrashFill>
     </li>
   );
 }
