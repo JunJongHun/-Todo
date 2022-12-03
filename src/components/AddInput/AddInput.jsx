@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import styles from "./AddInput.module.css";
 
 function AddInput({ addItem, deleteItem }) {
   let [itemName, setItemName] = useState("");
@@ -16,9 +17,10 @@ function AddInput({ addItem, deleteItem }) {
     setItemName("");
   };
   return (
-    <div>
-      <form action="">
+    <>
+      <form className={styles.form} action="">
         <input
+          className={styles.input}
           type="text"
           name="name"
           id=""
@@ -26,9 +28,11 @@ function AddInput({ addItem, deleteItem }) {
           value={itemName}
           onChange={handleChange}
         />
+        <button className={styles.button} onClick={handleSumbit}>
+          Add
+        </button>
       </form>
-      <button onClick={handleSumbit}>Add</button>
-    </div>
+    </>
   );
 }
 
